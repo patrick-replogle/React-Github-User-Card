@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import Users from "./components/Users";
+import Followers from "./components/Followers";
 import "./App.css";
 import logo from "./img/githublogo.png";
 
@@ -8,21 +8,37 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      users: []
+      user: [],
+      followers: []
     };
   }
 
   componentDidMount() {
     this.fetchUserData();
+    this.fetchUserfollowers();
   }
 
   fetchUserData = () => {
+    axios
+      .get(`https://api.github.com/users/patrick-replogle`)
+      .then(response => {
+        console.log(response.data);
+        this.setState({
+          user: response.data
+        });
+      })
+      .catch(error => {
+        console.log("error: ", error);
+      });
+  };
+
+  fetchUserfollowers = () => {
     axios
       .get(`https://api.github.com/users/patrick-replogle/followers`)
       .then(response => {
         console.log(response.data);
         this.setState({
-          users: response.data
+          followers: response.data
         });
       })
       .catch(error => {
@@ -33,9 +49,9 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <h1>stuff</h1>
-        <img src={logo} alt="github logo" />
-        <Users users={this.state.users} />
+        <img className="githubLogo" src={logo} alt="github logo" />
+        <img src={this.state.user.avatar_url} />
+        <Followers followers={this.state.followers} />
       </div>
     );
   }

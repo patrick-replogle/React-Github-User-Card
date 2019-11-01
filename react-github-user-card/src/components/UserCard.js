@@ -4,8 +4,8 @@ class UserCard extends React.Component {
   render() {
     return (
       <div className="userCard">
-        <img src={this.props.user.avatar_url} alt="user" />
-        <h3>{this.props.user.login}</h3>
+        <img src={this.props.follower.avatar_url} alt="user" />
+        <h3>{this.props.follower.login}</h3>
       </div>
     );
   }

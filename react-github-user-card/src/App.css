@@ -150,3 +150,22 @@ body {
   align-items: center;
   justify-content: center;
 }
+
+.githubLogo {
+  margin: 50px 0;
+}
+
+.followersCard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  background: white;
+  border-radius: 3px;
+  border: 1px solid black;
+  margin: 20px 0;
+}
+
+.followersCard img {
+  width: 60%;
+}
