@@ -1,15 +1,15 @@
-import React from "react";
+// import React from "react";
 
-const Form = props => {
-  return (
-    <div>
-      <h3>Change GitHub User here:</h3>
-      <form>
-        <input onChange={props.handleChange} value={props.user} />
-        <button>Submit</button>
-      </form>
-    </div>
-  );
-};
+// class Form extends React.Component {
+//   render() {
+//     return (
+//       <div>
+//         <h3>Change GitHub User here:</h3>
+//         <input onChange={this.props.handleChange} >
+//         <button onClick={this.props.handleSubmit}>Submit</button>
+//       </div>
+//     );
+//   }
+// }
 
-export default Form;
+// export default Form;

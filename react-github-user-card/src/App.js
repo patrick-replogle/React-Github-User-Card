@@ -58,28 +58,34 @@ class App extends React.Component {
       });
   };
 
-  // handleChange = event => {
-  //   this.setState({
-  //     user: event.target.value
-  //   });
-  // };
+  handleChange = event => {
+    event.preventDefault();
+    this.setState({
+      user: event.target.value
+    });
+  };
 
-  // handleSubmit = event => {
-  //   event.preventDefault();
-  //   this.setState({
-  //     user: event.target.value
-  //   });
-  // };
+  handleSubmit = event => {
+    event.preventDefault();
+    this.fetchUserData();
+    this.fetchUserfollowers();
+  };
 
   render() {
     return (
       <div className="App">
         <img className="githubLogo" src={logo} alt="github logo" />
-        <Form
+        {/* <Form
           handleChange={this.handleChange}
           handleSubmit={this.handleSubmit}
-          user={this.state.user}
+          value={this.state.value}
+        /> */}
+        <input
+          type="text"
+          onChange={this.handleChange}
+          value={this.state.user}
         />
+        <button onClick={this.handleSubmit}>Submit</button>
         <UserCard user={this.state.user} />
         <Followers followers={this.state.followers} />
       </div>
