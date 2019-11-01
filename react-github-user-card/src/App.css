@@ -144,28 +144,52 @@ body {
   background: linear-gradient(141deg, #9fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
 }
 
+h1 {
+  font-size: 4rem;
+}
+
 .App {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin: 0 auto;
+  max-width: 1200px;
 }
 
 .githubLogo {
-  margin: 50px 0;
+  margin: 30px 0;
+}
+
+.followers {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
 }
 
 .followersCard {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 80%;
+  width: 60%;
   background: white;
   border-radius: 3px;
   border: 1px solid black;
   margin: 20px 0;
 }
 
+.profileImageContainer {
+  width: 50%;
+}
+
+.profileContent {
+  width: 50%;
+}
+
+.profileContent .lambdaLogo {
+  width: 40%;
+}
+
 .followersCard img {
-  width: 60%;
+  width: 100%;
 }

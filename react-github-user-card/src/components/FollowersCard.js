@@ -1,18 +1,20 @@
 import React from "react";
+import LambdaLogo from "../img/lambdalogo.png";
 
-class UserCard extends React.Component {
+class FollowersCard extends React.Component {
   render() {
     return (
       <div className="followersCard">
-        <div>
+        <div className="profileImageContainer">
           <img src={this.props.follower.avatar_url} alt="user" />
         </div>
-        <div>
-          <h3>{this.props.follower.login}</h3>
+        <div className="profileContent">
+          <img className="lambdaLogo" src={LambdaLogo} alt="lambda logo" />
+          <h1>{this.props.follower.login}</h1>
         </div>
       </div>
     );
   }
 }
 
-export default UserCard;
+export default FollowersCard;
