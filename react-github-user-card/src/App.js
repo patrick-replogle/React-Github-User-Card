@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import Followers from "./components/Followers";
+import UserCard from "./components/UserCard";
 import "./App.css";
 import logo from "./img/githublogo.png";
 
@@ -50,7 +51,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <img className="githubLogo" src={logo} alt="github logo" />
-        <img src={this.state.user.avatar_url} />
+        <UserCard user={this.state.user} />
         <Followers followers={this.state.followers} />
       </div>
     );

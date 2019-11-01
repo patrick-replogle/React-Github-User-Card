@@ -11,6 +11,9 @@ class FollowersCard extends React.Component {
         <div className="profileContent">
           <img className="lambdaLogo" src={LambdaLogo} alt="lambda logo" />
           <h1>{this.props.follower.login}</h1>
+          <a href={this.props.follower.html_url} target="blank">
+            Click Here To View My Code
+          </a>
         </div>
       </div>
     );
