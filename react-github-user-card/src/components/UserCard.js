@@ -12,7 +12,7 @@ class UserCard extends React.Component {
           <img className="lambdaLogo" src={LambdaLogo} alt="lambda logo" />
           <h1>{this.props.user.login}</h1>
           <p>
-            I'm web developer. Click below to view my code or browse other
+            I'm a web developer. Click below to view my code or browse other
             coders that I'm following.
           </p>
           <a href={this.props.user.html_url} target="blank">
