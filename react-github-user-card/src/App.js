@@ -2,7 +2,6 @@ import React from "react";
 import axios from "axios";
 import Followers from "./components/Followers";
 import UserCard from "./components/UserCard";
-import Form from "./components/Form";
 import "./App.css";
 import logo from "./img/githublogo.png";
 
@@ -11,30 +10,30 @@ class App extends React.Component {
     super();
     this.state = {
       user: "patrick-replogle",
-      followers: []
+      followers: [],
+      input: ""
     };
   }
 
   componentDidMount() {
-    this.fetchUserData();
-    this.fetchUserfollowers();
+    this.fetchUserData(this.state.user);
+    this.fetchUserfollowers(this.state.user);
   }
 
   // componentDidUpdate(prevProps, prevState) {
-  //   if (prevState.user !== this.state.user) {
-  //     this.setState({
-  //       followers: []
-  //     });
+  //   if (
+  //     prevState.user !== this.state.user &&
+  //     prevState.followers !== this.state.followers
+  //   ) {
+  //     this.fetchUserData(this.state.user);
+  //     this.fetchUserfollowers(this.state.user);
   //   }
-  //   this.fetchUserData();
-  //   this.fetchUserfollowers();
   // }
 
-  fetchUserData = () => {
+  fetchUserData = user => {
     axios
-      .get(`https://api.github.com/users/${this.state.user}`)
+      .get(`https://api.github.com/users/${user}`)
       .then(response => {
-        console.log(response.data);
         this.setState({
           user: response.data
         });
@@ -44,11 +43,10 @@ class App extends React.Component {
       });
   };
 
-  fetchUserfollowers = () => {
+  fetchUserfollowers = user => {
     axios
-      .get(`https://api.github.com/users/${this.state.user}/followers`)
+      .get(`https://api.github.com/users/${user}/followers`)
       .then(response => {
-        console.log(response.data);
         this.setState({
           followers: response.data
         });
@@ -61,31 +59,40 @@ class App extends React.Component {
   handleChange = event => {
     event.preventDefault();
     this.setState({
-      user: event.target.value
+      input: event.target.value
     });
   };
 
   handleSubmit = event => {
     event.preventDefault();
-    this.fetchUserData();
-    this.fetchUserfollowers();
+
+    //this is what I'm trying to do, but it's not working
+    // this.setState({
+    //   user: this.state.input
+    // });
+    this.fetchUserData(this.state.input);
+    this.fetchUserfollowers(this.state.input);
+    this.setState({
+      input: ""
+    });
   };
 
   render() {
     return (
       <div className="App">
         <img className="githubLogo" src={logo} alt="github logo" />
-        {/* <Form
-          handleChange={this.handleChange}
-          handleSubmit={this.handleSubmit}
-          value={this.state.value}
-        /> */}
-        <input
-          type="text"
-          onChange={this.handleChange}
-          value={this.state.user}
-        />
-        <button onClick={this.handleSubmit}>Submit</button>
+        <div className="formContainer">
+          <h3>Type a username below to see other Github profiles:</h3>
+          <div className="form">
+            <input
+              type="text"
+              onChange={this.handleChange}
+              value={this.state.input}
+              placeholder=""
+            />
+            <button onClick={this.handleSubmit}>Submit</button>
+          </div>
+        </div>
         <UserCard user={this.state.user} />
         <Followers followers={this.state.followers} />
       </div>

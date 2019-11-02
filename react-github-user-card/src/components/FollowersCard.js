@@ -8,12 +8,14 @@ class FollowersCard extends React.Component {
         <div className="profileImageContainer">
           <img src={this.props.follower.avatar_url} alt="user" />
         </div>
-        <div className="profileContent">
+        <div className="followersCardContent">
           <img className="lambdaLogo" src={LambdaLogo} alt="lambda logo" />
-          <h1>{this.props.follower.login}</h1>
-          <a href={this.props.follower.html_url} target="blank">
-            Click Here To View My Code
-          </a>
+          <div className="followersText">
+            <h3>{this.props.follower.login}</h3>
+            <a href={this.props.follower.html_url} target="blank">
+              View My Code
+            </a>
+          </div>
         </div>
       </div>
     );
