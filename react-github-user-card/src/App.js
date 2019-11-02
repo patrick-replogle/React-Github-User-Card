@@ -9,30 +9,28 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      user: "patrick-replogle",
+      user: {},
+      mainUser: "patrick-replogle",
       followers: [],
       input: ""
     };
   }
 
   componentDidMount() {
-    this.fetchUserData(this.state.user);
-    this.fetchUserfollowers(this.state.user);
+    this.fetchUserData();
+    this.fetchUserFollowers();
   }
 
-  // componentDidUpdate(prevProps, prevState) {
-  //   if (
-  //     prevState.user !== this.state.user &&
-  //     prevState.followers !== this.state.followers
-  //   ) {
-  //     this.fetchUserData(this.state.user);
-  //     this.fetchUserfollowers(this.state.user);
-  //   }
-  // }
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.user !== this.state.user) {
+      this.fetchUserData();
+      this.fetchUserFollowers();
+    }
+  }
 
-  fetchUserData = user => {
+  fetchUserData = () => {
     axios
-      .get(`https://api.github.com/users/${user}`)
+      .get(`https://api.github.com/users/${this.state.mainUser}`)
       .then(response => {
         this.setState({
           user: response.data
@@ -43,9 +41,9 @@ class App extends React.Component {
       });
   };
 
-  fetchUserfollowers = user => {
+  fetchUserFollowers = () => {
     axios
-      .get(`https://api.github.com/users/${user}/followers`)
+      .get(`https://api.github.com/users/${this.state.mainUser}/followers`)
       .then(response => {
         this.setState({
           followers: response.data
@@ -65,15 +63,8 @@ class App extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
-
-    //this is what I'm trying to do, but it's not working
-    // this.setState({
-    //   user: this.state.input
-    // });
-    this.fetchUserData(this.state.input);
-    this.fetchUserfollowers(this.state.input);
     this.setState({
-      input: ""
+      mainUser: this.state.input
     });
   };
 
